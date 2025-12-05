@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Attendance Management App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Attendance Management</h1>
+      <p>Mark attendance via manual entry or face recognition.</p>
+    </header>
+
+    <main class="grid">
+      <!-- Manual Attendance -->
+      <section class="card">
+        <h2>Manual Attendance</h2>
+        <form id="attendance-form" class="form-inline">
+          <input
+            type="text"
+            id="studentName"
+            placeholder="Enter student name"
+            required
+          />
+          <button type="submit">Mark Present</button>
+        </form>
+        <p class="hint">Type a student name and click “Mark Present”.</p>
+      </section>
+
+      <!-- Face Recognition -->
+      <section class="card">
+        <h2>Face Recognition</h2>
+        <div class="video-wrapper">
+          <video id="video" width="240" height="180" autoplay></video>
+        </div>
+        <button id="capture">Capture Face &amp; Mark Attendance</button>
+        <canvas
+          id="canvas"
+          width="240"
+          height="180"
+          style="display:none"
+        ></canvas>
+        <p class="hint">
+          Camera will capture the frame and (optionally) send it to the server for
+          verification.
+        </p>
+      </section>
+
+      <!-- Attendance List -->
+      <section class="card card-wide">
+        <div class="list-header">
+          <h2>Attendance List</h2>
+          <div class="list-controls">
+            <span id="total-count">Total: 0</span>
+            <button id="refresh">Refresh</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Date &amp; Time</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody id="attendance-body">
+              <!-- Rows injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast notifications -->
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
